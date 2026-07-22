@@ -24,7 +24,7 @@ function Admin() {
   const fetchEnquiries = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/admission"
+        https://rama-technical-institute.onrender.com/api/admin
       );
 
       setEnquiries(res.data.data);

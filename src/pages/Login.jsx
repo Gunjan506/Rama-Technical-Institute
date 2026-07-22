@@ -22,7 +22,7 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/admin/login",
+        https://rama-technical-institute.onrender.com/api/login,
         loginData
       );
 
