@@ -77,29 +77,29 @@ function Home() {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await axios.post(
-        https://rama-technical-institute.onrender.com/api/admission
-        formData
-      );
+  try {
+    const res = await axios.post(
+      "https://rama-technical-institute.onrender.com/api/admission",
+      formData
+    );
 
-      alert(res.data.message);
+    alert(res.data.message);
 
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        course: "",
-        message: "",
-      });
-    } catch (err) {
-      alert("Failed to submit enquiry.");
-      console.log(err);
-    }
-  };
+    setFormData({
+      name: "",
+      phone: "",
+      email: "",
+      course: "",
+      message: "",
+    });
+  } catch (err) {
+    alert("Failed to submit enquiry.");
+    console.log(err);
+  }
+};
 
   return (
     <>

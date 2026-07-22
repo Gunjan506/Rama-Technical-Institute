@@ -24,7 +24,7 @@ function Admin() {
   const fetchEnquiries = async () => {
     try {
       const res = await axios.get(
-        https://rama-technical-institute.onrender.com/api/admin
+        "https://rama-technical-institute.onrender.com/api/admin"
       );
 
       setEnquiries(res.data.data);
