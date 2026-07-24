@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Admission = require("../models/Admission");
-const nodemailer = require("nodemailer");
-
+const { Resend } = require("resend");
 // ===============================
 // Create Admission Enquiry
 // ===============================
@@ -12,25 +11,16 @@ router.post("/", async (req, res) => {
 
   try {
     // Save enquiry in MongoDB
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const admission = await Admission.create(req.body);
 
-    // Create email transporter
-    const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
 
     // Send email notification
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
-      subject: "New Admission Enquiry Received",
-      text: `
+await resend.emails.send({
+  from: "onboarding@resend.dev",
+  to: process.env.EMAIL_USER,
+  subject: "New Admission Enquiry Received",
+  text: `
 New Admission Enquiry:
 
 Name: ${req.body.name}
