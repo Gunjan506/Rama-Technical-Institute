@@ -22,13 +22,15 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/admin/login",
-        loginData
-      );
+  "http://localhost:5000/api/admin/login",
+  loginData
+);
 
-      alert(res.data.message);
+localStorage.setItem("token", res.data.token);
 
-      navigate("/admin");
+alert(res.data.message);
+
+navigate("/admin");
 
     } catch (err) {
       alert("Invalid Username or Password");
