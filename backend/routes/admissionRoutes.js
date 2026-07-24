@@ -9,8 +9,8 @@ const nodemailer = require("nodemailer");
 // ===============================
 router.post("/", async (req, res) => {
   console.log("Admission route called");
-  try {
 
+  try {
     // Save enquiry in MongoDB
     const admission = await Admission.create(req.body);
 
@@ -35,9 +35,12 @@ Name: ${req.body.name}
 Email: ${req.body.email}
 Phone: ${req.body.phone}
 Course: ${req.body.course}
+Message: ${req.body.message}
       `,
     });
-console.log("Email sent successfully");
+
+    console.log("Email sent successfully");
+
     res.status(201).json({
       success: true,
       message: "Enquiry submitted successfully",
@@ -45,6 +48,8 @@ console.log("Email sent successfully");
     });
 
   } catch (error) {
+    console.error("Admission Error:", error); // <-- Ye line add ki hai
+
     res.status(500).json({
       success: false,
       message: error.message,
